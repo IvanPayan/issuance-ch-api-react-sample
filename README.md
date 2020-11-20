@@ -16,6 +16,7 @@ Run the following commands :
 
 ```bash
 npm install
+npm update
 cp src/config.js.spec src/config.js
 npm start
 ```
@@ -52,4 +53,3 @@ Your react app will then run on [http://localhost:8080](http://localhost:8080).
 A bootstrap demo is available in the `samples/bootstrap-integration` folder. If the POC is running on [http://localhost:8080](http://localhost:8080) you can simply load the index.html file to see how you can integrate the POC in your basic bootstrap website.
 
 > Note: If you want to change the URL you just need to edit the `samples/bootstrap-integration/index.html` file and change the iframe target.
-
