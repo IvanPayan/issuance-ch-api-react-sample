@@ -29,7 +29,7 @@ function SubscriptionEdit(props) {
         <Col>
           <Row className="justify-content-md-between align-items-md-center mb-3">
             <Col xs="12" md={{ size: 'auto' }}>
-              <h1>Subscription <small>edit</small></h1>
+          
             </Col>
             <Col xs="12" md={{ size: 'auto' }}>
               <Link to={'/subscription'} className="btn btn-secondary w-100">Cancel</Link>

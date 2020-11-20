@@ -18,7 +18,7 @@ function LoggedOutView(props) {
         <NavItem>
           <NavLink tag={Link} to="/login" className="d-flex">
             <IconLogIn className="mr-2" />
-            Sign In 
+            Sign In
           </NavLink>
         </NavItem>
       </>
@@ -34,10 +34,14 @@ function LoggedInView(props) {
       <>
         <NavItem>
           <NavLink tag={Link} to="/subscription">
-            Subscriptions
+            My participations
           </NavLink>
         </NavItem>
-
+        <NavItem>
+          <NavLink tag={Link} to="/subscription/new">
+            Staked Tokens
+          </NavLink>
+        </NavItem>
         <NavItem>
           <NavLink tag={Link} to="/logout" className="d-flex" onClick={props.handleOnClick}>
             <IconLogOut className="mr-2" />
@@ -66,7 +70,7 @@ function Header(props) {
 
   return (
     <Navbar color="light" light expand="md">
-      <NavbarBrand tag={Link} to="/">{props.CommonStore.appName}</NavbarBrand>
+      <NavbarBrand tag={Link} to="/"><img src="https://stakehound.com/wp-content/uploads/2020/09/logo-stakehound-1.png"/></NavbarBrand>
 
       {props.CommonStore.appLoaded &&
         <>

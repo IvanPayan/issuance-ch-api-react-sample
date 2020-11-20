@@ -1,30 +1,32 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, Jumbotron, Col, Row } from 'reactstrap';
+import { Redirect } from 'react-router';
 
 function Home(props) {
   return (
     <Jumbotron>
+      <Redirect to="/login" />
       <Container>
         <Row>
           <Col xs="12" md={{size: 8, offset: 2}}>
-            <h1>Welcome to {props.CommonStore.appName}</h1>
+            <h1>Welcome to {props.CommonStore.appName} KYC process</h1>
             <p>
-              We implement a simple and user-friendly procedure in line with the Swiss regulatory framework,
-              that’s why you are asked to complete a brief « Know Your Customer » process.
+
+
             </p>
             <p>
               <strong>
-                Altcoinomy is a Swiss-based supervised KYC operator who will be conducting anti money laundering analysis.
-                Altcoinomy SA (CHE-209.239.695) is bound by Swiss laws on banking secrecy,
-                and will never distribute confidential information about you.
+              StakeHound delegates to Altocinomy the KYC and AML process.
+              Altcoinomy SA (CHE-209.239.695) is bound by Swiss laws on banking secrecy, and will never distribute confidential information about you.
               </strong>
             </p>
             <p>
               All data is encrypted and stored offline.
             </p>
             <p>
-              Let’s get started!
+            <Link class="btn btn-primary" to="/register">Start</Link>
             </p>
           </Col>
         </Row>

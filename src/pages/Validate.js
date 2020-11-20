@@ -33,9 +33,13 @@ function Validate(props) {
       <Row>
         <Col xs="12" md={{size: 6, offset: 3}}>
           <h1>Validate account</h1>
+          <div class="alert alert-success" role="alert">
+              The code has been sent to your email by Altcoinomy.
+          </div>
           <p>
             <Link to="/validate/resend">Resend validation code?</Link>
           </p>
+
 
           <FormErrors errors={errors} />
 

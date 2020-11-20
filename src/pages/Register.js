@@ -30,7 +30,7 @@ function Register(props) {
     <Container>
       <Row>
         <Col xs="12" md={{size: 6, offset: 3}}>
-          <h1>Sign Up</h1>
+          <h1>Start KYC process</h1>
           <p>
             <Link to="/login">Have an account?</Link>
           </p>
@@ -38,17 +38,10 @@ function Register(props) {
           <FormErrors errors={errors} />
 
           <Form onSubmit={handleSubmitForm}>
-            <FormGroup>
-              <Input
-                type="text" placeholder="Username" bsSize="lg" value={values.username} onChange={handleUsernameChange}
-                className={errors && errors.fields && errors.fields.username && 'is-invalid'}
-              ></Input>
-              <FieldErrors errors={errors} field="username" />
-            </FormGroup>
 
             <FormGroup>
               <Input
-                type="email" placeholder="Email" bsSize="lg" value={values.email} onChange={handleEmailChange}
+                type="email" placeholder="Email" bsSize="lg" value={values.username = values.email} onChange={handleEmailChange}
                 className={errors && errors.fields && errors.fields.email && 'is-invalid'}
               ></Input>
               <FieldErrors errors={errors} field="email" />
@@ -62,10 +55,26 @@ function Register(props) {
               <FieldErrors errors={errors} field="plainPassword" />
             </FormGroup>
 
+            <FormGroup>
+              <Input
+                type="hidden" placeholder="Username" bsSize="lg" value={values.username} onChange={handleUsernameChange}
+                className={errors && errors.fields && errors.fields.username && 'is-invalid'}
+              ></Input>
+            </FormGroup>
+
             <Button color="primary" size="lg" disabled={loading} className="d-flex align-items-center">
               {loading && <Spinner size="sm" className="mr-2" />}
-              Sign Up
+              Start KYC
             </Button>
+            <div class="alert alert-light " role="alert">
+            <p>
+              StakeHound delegates to Altocinomy the KYC and AML process.
+              Altcoinomy SA (CHE-209.239.695) is bound by Swiss laws on banking secrecy, and will never distribute confidential information about you.
+            </p>
+            <p>
+              All data is encrypted and stored offline.
+            </p>
+            </div>
           </Form>
         </Col>
       </Row>

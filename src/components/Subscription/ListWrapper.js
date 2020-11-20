@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Alert, Spinner, Table } from 'reactstrap';
 import moment from 'moment';
+import { Redirect } from 'react-router';
+
 
 function SubscriptionListWrapper(props) {
   const { subscriptions, loading } = props;
@@ -14,9 +16,7 @@ function SubscriptionListWrapper(props) {
 
   if (!subscriptions.length) {
     return (
-      <Alert color="warning">
-        There is no subscriptions, yet!
-      </Alert>
+      <Redirect to="/subscription/new" />
     );
   }
 

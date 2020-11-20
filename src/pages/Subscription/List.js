@@ -19,11 +19,9 @@ function SubscriptionList(props) {
         <Col>
           <Row className="justify-content-md-between align-items-md-center mb-3">
             <Col xs="12" md={{size: 'auto'}}>
-              <h1>Subscription <small>list</small></h1>
+              <h1>My participations</h1>
             </Col>
-            <Col xs="12" md={{size: 'auto'}}>
-              <Link to={`${url}/new`} className="btn btn-primary w-100">New</Link>
-            </Col>
+            
           </Row>
 
           <ListWrapper

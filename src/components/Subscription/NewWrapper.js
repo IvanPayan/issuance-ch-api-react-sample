@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Button, Spinner, Table, Form, FormGroup, CustomInput } from 'reactstrap';
 import moment from 'moment';
 import IcoLogo from '../IcoLogo';
+import { FILTER_KEYWORD } from '../../config';
 
 function SubscriptionNewWrapper(props) {
   const { icos, loadingIco, loadingSubscription, participate } = props;
@@ -49,31 +50,32 @@ function SubscriptionNewWrapper(props) {
               const now = moment();
               const dateTo = moment(ico.date_to);
               const isExpired = dateTo < now;
-
-              return (
-                <tr key={ico.id}>
-                  <td>
-                    <IcoLogo icoId={ico.id} />
-                  </td>
-                  <td>{ico.name}</td>
-                  <td>{ico.description}</td>
-                  <td>
-                    {
-                      !isExpired &&
-                      <Button color="primary" disabled={loadingSubscription} onClick={() => {participate(ico.id, registerAs)}} className="d-flex align-items-center ml-auto">
-                        {loadingSubscription && <Spinner size="sm" className="mr-2" />}
-                        Participate
-                      </Button>
-                    }
-                    {
-                      isExpired &&
-                      <Button color="secondary" disabled={true} className="d-flex ml-auto">
-                        Completed {dateTo.from(now)}
-                      </Button>
-                    }
-                  </td>
-                </tr>
-              )
+              if (ico.name.includes(FILTER_KEYWORD)) {
+                return (
+                  <tr key={ico.id}>
+                    <td>
+                      <IcoLogo icoId={ico.id} />
+                    </td>
+                    <td>{ico.name}</td>
+                    <td>{ico.description}</td>
+                    <td>
+                      {
+                        !isExpired &&
+                        <Button color="primary" disabled={loadingSubscription} onClick={() => {participate(ico.id, registerAs)}} className="d-flex align-items-center ml-auto">
+                          {loadingSubscription && <Spinner size="sm" className="mr-2" />}
+                          Participate
+                        </Button>
+                      }
+                      {
+                        isExpired &&
+                        <Button color="secondary" disabled={true} className="d-flex ml-auto">
+                          Completed {dateTo.from(now)}
+                        </Button>
+                      }
+                    </td>
+                  </tr>
+                )
+              }
             })
           }
         </tbody>
