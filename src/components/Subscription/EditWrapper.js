@@ -19,9 +19,10 @@ import CustomInput from 'reactstrap/lib/CustomInput';
 
 function SubscriptionEditWrapper(props) {
   const { subscription, fillStatus, loading, SubscriptionStore, finalizing } = props;
+  const { globalErrors } = SubscriptionStore;
   const [stepOpen, setStepOpen] = useState();
   const [shown, setShown] = useState();
-  const [globalErrors, setGlobalErrors] = useState();
+  //const [globalErrors, setGlobalErrors] = useState();
   const [successMessage, setSuccessMessage] = useState();
 
   const stepComponents = [
@@ -64,28 +65,28 @@ function SubscriptionEditWrapper(props) {
   let subscriptionStatus = "";
   switch (fillStatus.status) {
     case "subscription_pending":
-      subscriptionStatus = "Subscription pending";
+      subscriptionStatus = <div className='badge badge-inf'>Subscription pending</div>;
       break;
     case "subscription_submitted":
-      subscriptionStatus = "Waiting for Altcoinomy review";
+      subscriptionStatus =  <div className='badge badge-warning'>Waiting for review</div>;
       break;
     case "subscription_onboarded":
-      subscriptionStatus = "Onboarded";
+      subscriptionStatus = <div className='badge badge-success'>Onboarded</div>;
       break;
     case "subscription_to_be_fixed":
-      subscriptionStatus = "Waiting your updates";
+      subscriptionStatus = <div className='badge badge-inf'>Waiting your updates</div>;
       break;
     case "subscription_rejected":
-      subscriptionStatus = "KYC rejected";
+      subscriptionStatus = <div className='badge badge-danger'>KYC rejected</div>;
       break;
     case "subscription_to_report":
-      subscriptionStatus = "KYC rejected";
+      subscriptionStatus = <div className='badge badge-danger'>KYC rejected</div>;
       break;
     case "subscription_acknowledged":
-      subscriptionStatus = "Subscription accepted";
+      subscriptionStatus = <div className='badge badge-success'>Subscription accepted</div>;
       break;
     case "subscription_auto_wait_worldcheck":
-      subscriptionStatus = "Verification pending";
+      subscriptionStatus = <div className='badge badge-warning'>Verification pending</div>;
       break;
     default:
       subscriptionStatus = subscription.status.replace("_", " ");
@@ -112,9 +113,7 @@ function SubscriptionEditWrapper(props) {
       <Row className="justify-content-md-between align-items-md-center">
         <Col xs="12" className="mb-12 mb-md-3 text-right">
           <strong>Status of your subscription: </strong>
-          <div className="badge badge-info">
-            {subscriptionStatus}
-          </div>
+          {subscriptionStatus}
         </Col>
       </Row>
 
@@ -123,7 +122,7 @@ function SubscriptionEditWrapper(props) {
         <Row className="justify-content-md-between align-items-md-center">
           <Col xs="12" className="mb-12 mb-md-3 text-right">
             <strong>Video conference date: </strong>
-            <div className="badge badge-info">
+            <div className="badge badge-inf">
               {
                 moment(fillStatus.video_conference_date).format('DD/MM/YYYY HH:mm')
               }
@@ -167,14 +166,16 @@ function SubscriptionEditWrapper(props) {
             disabled={finalizing}
             onClick={() => {
               setSuccessMessage(null);
-              setGlobalErrors(null);
+              //setGlobalErrors(null);
+              SubscriptionStore.setGlobalErrors(null);
               SubscriptionStore.finalize(subscription.id, terms)
                 .then(res => {
                   SubscriptionStore.setFillStatus(res);
                   setSuccessMessage("Thanks for your submission. You will be updated soon.");
                 })
                 .catch(err => {
-                  setGlobalErrors(err.response ? err.response.body : "Unknown error occurred. Please try again or contact us.")
+                  SubscriptionStore.setGlobalErrors(err.response ? err.response.body : "Unknown error occurred. Please try again or contact us.");
+                  //setGlobalErrors(err.response ? err.response.body : "Unknown error occurred. Please try again or contact us.")
                 });
             }}
           >

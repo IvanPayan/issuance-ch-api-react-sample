@@ -152,6 +152,33 @@ a{
     font-size: 12px;
 }
 
+.btn-outline-info.disabled, .btn-outline-info:disabled {
+    color: #dc3545;
+    background-color: transparent;
+}
+
+.btn.disabled, .btn:disabled {
+    opacity: 1;
+}
+
+.btn-outline-info {
+    border-color: #dc3545;
+}
+.badge-inf {
+    color: #fff;
+    background-color: #17a2b8;
+}
+.badge-info {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.alert-danger {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border-color: #dc3545;
+}
+
 /* End of additional styles */
 
 .card.is-not-active,

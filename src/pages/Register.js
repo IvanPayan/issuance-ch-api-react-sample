@@ -32,7 +32,7 @@ function Register(props) {
         <Col xs="12" md={{size: 6, offset: 3}}>
           <h1>Start KYC process</h1>
           <p>
-            <Link to="/login">Have an account?</Link>
+            <Link to="/login">Have an Altcoinomy account?</Link>
           </p>
 
           <FormErrors errors={errors} />
